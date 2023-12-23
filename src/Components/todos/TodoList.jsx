@@ -10,7 +10,14 @@ const TodoList = () => {
     return <TodoListItem key={id} todo={todos[id]} />;
   });
 
-  return <ul className="todo-list">{renderedListItems}</ul>;
+  return (
+    <>
+      <header className="header">
+        <input className="new-todo" placeholder="write new todo" />
+      </header>
+      <ul className="todo-list">{renderedListItems}</ul>;
+    </>
+  );
 };
 
 export default TodoList;

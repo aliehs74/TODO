@@ -17,29 +17,45 @@ const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
+
     addTodo(state, action) {
       const todo = action.payload;
       state.data[todo.id] = todo
     },
+
     removeTodo(state, action) {
       const todo = action.payload;
-      state.data[todo.id] = todo
+      delete state.data[todo.id]
     },
+
     toggleTodo(state, action) {
       const todo = action.payload;
-      state.data[todo.id] = todo
+      state.data[todo.id].completed = !state.data[todo.id].completed
     },
-    colorSelect(state, action) {
-      const todo = action.payload;
-      state.data[todo.id] = todo
+
+    SelectTodoColor: {
+      reducer(state, action) {
+        const { id, color } = action.payload;
+        state.data[id].color = color
+      },
+      prepare({ id, color }) {
+        return {
+          payload: {
+            id,
+            color
+          }
+        }
+      },
     },
-    allTodoCompleted(state, action) {
-      const todo = action.payload;
-      state.data[todo.id] = todo
+
+    allTodosCompleted(state) {
+      const keys = Object.keys(state.data)
+      keys.map(key => state.data[key].completed = true)
     },
-    noneTodoCompleted(state, action) {
-      const todo = action.payload;
-      state.data[todo.id] = todo
+
+    noneTodoCompleted(state) {
+      const keys = Object.keys(state.data)
+      keys.map(key => state.data[key].completed = false)
     },
   },
 })

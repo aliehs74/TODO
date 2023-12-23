@@ -1,5 +1,4 @@
 import './App.css';
-import Header from './Components/header/Header'
 import TodoList from './Components/todos/TodoList'
 import Footer from './Components/footer/Footer'
 
@@ -17,7 +16,6 @@ function App() {
         <section className="medium-container">
           <br />
           <div className="todoapp">
-            <Header />
             <TodoList />
             <Footer />
           </div>
