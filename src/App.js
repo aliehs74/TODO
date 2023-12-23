@@ -17,9 +17,9 @@ function App() {
         <section className="medium-container">
           <br />
           <div className="todoapp">
-            {/* <Header /> */}
+            <Header />
             <TodoList />
-            {/* <Footer /> */}
+            <Footer />
           </div>
         </section>
       </main>
