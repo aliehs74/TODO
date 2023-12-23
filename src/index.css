@@ -1,5 +1,5 @@
 :root {
-  --redux-color: #764abc;
+  --redux-color: #6200ff;
 }
 
 html {
@@ -69,9 +69,17 @@ nav section {
 
 nav section h1,
 nav section {
-  color: white;
+  color: rgb(255, 255, 255);
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
+nav section sub {
+  margin-top: -50px;
+  color: #81bcf7;
+}
 /* Main content */
 
 section {

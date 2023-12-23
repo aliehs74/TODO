@@ -4,6 +4,7 @@ export const availableColors = ["green", "blue", "orange", "purple", "red"];
 export const capitalize = (s) => s[0].toUpperCase() + s.slice(1);
 
 const TodoListItem = ({ todo }) => {
+  console.log(todo);
   const { text, completed, color } = todo;
   const colorOptions = availableColors.map((c) => (
     <option key={c} value={c}>
