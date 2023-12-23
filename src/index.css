@@ -70,15 +70,17 @@ nav section {
 nav section h1,
 nav section {
   color: rgb(255, 255, 255);
-  /* position: relative; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: -5px;
+  font-size: 40px;
 }
 nav section sub {
   margin-top: -50px;
   color: #81bcf7;
+  font-size: 12px;
 }
 /* Main content */
 
