@@ -1,8 +1,4 @@
-const StatusFilters = {
-  All: "all",
-  Active: "active",
-  Completed: "completed",
-};
+import { StatusFilters } from "./filterSlice";
 
 const StatusFilter = ({ value: status }) => {
   const renderedFilters = Object.keys(StatusFilters).map((key) => {
