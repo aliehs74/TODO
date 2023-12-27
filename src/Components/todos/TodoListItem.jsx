@@ -2,7 +2,7 @@ import { availableColors, capitalize } from "./colorProcess";
 import { ReactComponent as TimesSolid } from "./times-solid.svg";
 
 const TodoListItem = ({ todo }) => {
-  const { text, completed, color } = todo;
+  const { text, completed, color, displayStatus } = todo;
   const colorOptions = availableColors.map((c) => (
     <option key={c} value={c}>
       {capitalize(c)}
@@ -10,7 +10,7 @@ const TodoListItem = ({ todo }) => {
   ));
 
   return (
-    <li>
+    <li style={{ display: displayStatus }}>
       <div className="view">
         <div className="segment label">
           <input className="toggle" type="checkbox" />

@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit"
-import initialState from "../../Redux/initialState"
+import { createSlice } from "@reduxjs/toolkit";
+import initialState from "../../Redux/initialState";
 
 export const StatusFilters = {
   All: "all",
@@ -11,37 +11,59 @@ const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
+    statusFilter: {
+      reducer(state, action) {
+        const { status } = action.payload;
+        const keys = Object.keys(state.data);
+        //  // displayStatus = "" ==> show item
+        if (status === "All") {
+          keys.forEach((key) => {
+            state.data[key].displayStatus = "";
+          });
+        }
+        if (status === "Active") {
+          keys.forEach((key) => {
+            state.data[key].completed === false
+              ? (state.data[key].displayStatus = "")
+              : (state.data[key].displayStatus = "none");
+          });
+        }
 
-    statusFilter(state, action) {
-      const filter = action.payload;
-      state.data[filter.id] = filter
+        if (status === "Completed") {
+          keys.forEach((key) => {
+            state.data[key].completed === true
+              ? (state.data[key].displayStatus = "")
+              : (state.data[key].displayStatus = "none");
+          });
+        }
+      },
+
+      prepare(status) {
+        return { payload: { status } };
+      },
     },
-    colorFilter(state, action) {
-      const filter = action.payload;
-      state.data[filter.id] = filter
-    },
-
-
-    // SelectFilterColor: {
-    //   reducer(state, action) {
-    //     const { id, color } = action.payload;
-    //     state.data[id].color = color
-    //   },
-    //   prepare({ id, color }) {
-    //     return {
-    //       payload: {
-    //         id,
-    //         color
-    //       }
-    //     }
-    //   },
-    // },
-
   },
-})
 
-// 
+  colorFilter: {
+    reducer(state, action) {
+      const { color } = action.payload;
+      const keys = Object.keys(state.data);
+
+      keys.forEach((key) => {
+        state.data[key].color === color
+          ? (state.data[key].displayStatus = "")
+          : (state.data[key].displayStatus = "none");
+      });
+    },
+
+    prepare(color) {
+      return { payload: { color } };
+    },
+  },
+});
+
+//
 //export action and reducer
-export const { statusFilter, colorFilter } = filterSlice.actions
+export const { statusFilter, colorFilter } = filterSlice.actions;
 
-export default filterSlice.reducer
+export default filterSlice.reducer;
