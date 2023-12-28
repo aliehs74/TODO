@@ -11,6 +11,16 @@ const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
+    allTodosCompleted(state) {
+      const keys = Object.keys(state.data);
+      keys.map((key) => (state.data[key].completed = true));
+    },
+
+    noneTodosCompleted(state) {
+      const keys = Object.keys(state.data);
+      keys.map((key) => (state.data[key].completed = false));
+    },
+    
     statusFilter: {
       reducer(state, action) {
         const { status } = action.payload;
@@ -64,6 +74,11 @@ const filterSlice = createSlice({
 
 //
 //export action and reducer
-export const { statusFilter, colorFilter } = filterSlice.actions;
+export const {
+  allTodosCompleted,
+  noneTodosCompleted,
+  statusFilter,
+  colorFilter,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;
