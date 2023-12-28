@@ -1,7 +1,11 @@
 import { availableColors, capitalize } from "./colorProcess";
 import { ReactComponent as TimesSolid } from "./times-solid.svg";
+import { useDispatch } from "react-redux";
+import { removeTodo } from "./todosSlice";
 
 const TodoListItem = ({ todo }) => {
+  const dispatch = useDispatch();
+
   const { text, completed, color, displayStatus } = todo;
   const colorOptions = availableColors.map((c) => (
     <option key={c} value={c}>
@@ -25,7 +29,10 @@ const TodoListItem = ({ todo }) => {
             <option value=""></option>
             {colorOptions}
           </select>
-          <button className="destroy">
+          <button
+            className="destroy"
+            onClick={() => dispatch(removeTodo(todo))}
+          >
             <TimesSolid />
           </button>
         </div>
