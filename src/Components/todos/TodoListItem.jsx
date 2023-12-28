@@ -1,11 +1,11 @@
 import { availableColors, capitalize } from "./colorProcess";
 import { ReactComponent as TimesSolid } from "./times-solid.svg";
 import { useDispatch } from "react-redux";
-import { removeTodo, toggleTodo } from "./todosSlice";
+import { SelectTodoColor, removeTodo, toggleTodo } from "./todosSlice";
 
 const TodoListItem = ({ todo }) => {
   const dispatch = useDispatch();
-  const { text, completed, color, displayStatus } = todo;
+  const { text, completed, color, displayStatus, id } = todo;
   const colorOptions = availableColors.map((c) => (
     <option key={c} value={c}>
       {capitalize(c)}
@@ -28,6 +28,9 @@ const TodoListItem = ({ todo }) => {
           <select
             className="colorPicker"
             defaultValue={color}
+            onChange={(e) => {
+              dispatch(SelectTodoColor({ id, color: e.target.value }));
+            }}
             style={{ color }}
           >
             <option value=""></option>
