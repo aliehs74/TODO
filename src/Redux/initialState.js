@@ -5,7 +5,7 @@ const initialState = {
       text: "text1",
       completed: true,
       color: "red",
-      displayStatus: "none",
+      displayStatus: "",
     },
     2: {
       id: 2,

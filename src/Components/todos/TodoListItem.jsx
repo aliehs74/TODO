@@ -1,11 +1,10 @@
 import { availableColors, capitalize } from "./colorProcess";
 import { ReactComponent as TimesSolid } from "./times-solid.svg";
 import { useDispatch } from "react-redux";
-import { removeTodo } from "./todosSlice";
+import { removeTodo, toggleTodo } from "./todosSlice";
 
 const TodoListItem = ({ todo }) => {
   const dispatch = useDispatch();
-
   const { text, completed, color, displayStatus } = todo;
   const colorOptions = availableColors.map((c) => (
     <option key={c} value={c}>
@@ -17,7 +16,12 @@ const TodoListItem = ({ todo }) => {
     <li style={{ display: displayStatus }}>
       <div className="view">
         <div className="segment label">
-          <input className="toggle" type="checkbox" />
+          <input
+            className="toggle"
+            type="checkbox"
+            defaultChecked={completed}
+            onClick={() => dispatch(toggleTodo(todo))}
+          />
           <div className="todo-text">{text}</div>
         </div>
         <div className="segment buttons">

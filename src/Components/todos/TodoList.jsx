@@ -16,7 +16,7 @@ const TodoList = () => {
   const dispatch = useDispatch();
 
   const todosId = Object.keys(todos);
-  // console.log(todos);
+  console.log(todos);
 
   const renderedListItems = todosId.map((id) => {
     return <TodoListItem key={id} todo={todos[id]} />;
