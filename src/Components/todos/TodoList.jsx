@@ -5,6 +5,7 @@ import { addTodo } from "./todosSlice";
 import { nanoid } from "@reduxjs/toolkit";
 const TodoList = () => {
   const [value, setValue] = useState("");
+
   const newtodo = {
     id: nanoid(4),
     text: value,
@@ -12,11 +13,16 @@ const TodoList = () => {
     color: "",
     displayStatus: "",
   };
+
+  // const todos = useSelector((state) => state.todo.data);
+  // console.log("todos", todos);
   const todos = useSelector((state) => state.todo.data);
+  console.log("todos", todos);
+
+  //
   const dispatch = useDispatch();
 
   const todosId = Object.keys(todos);
-  console.log(todos);
 
   const renderedListItems = todosId.map((id) => {
     return <TodoListItem key={id} todo={todos[id]} />;

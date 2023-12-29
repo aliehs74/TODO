@@ -1,9 +1,9 @@
-import filterSlice from "../Components/footer/filterSlice";
-import todosSlice from "../Components/todos/todosSlice"
+import filterSliceReducer from "../Components/footer/filterSlice";
+import todosSliceReducer from "../Components/todos/todosSlice";
 
 const rootReducer = {
-  todo: todosSlice,
-  filter: filterSlice
+  filter: filterSliceReducer,
+  todo: todosSliceReducer,
 };
 
-export default rootReducer
+export default rootReducer;

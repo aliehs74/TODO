@@ -1,14 +1,39 @@
 import ColorFilters from "./ColorFilters";
 import StatusFilter from "./StatusFilter";
 import RemainingTodos from "./RemainingTodos";
+import { useDispatch } from "react-redux";
+import { noneTodosCompleted, allTodosCompleted } from "../todos/todosSlice";
+// import { allTodosCompleted } from "../todos/todosSlice";
 
 export default function Footer() {
+  const dispatch = useDispatch();
+
+  // const todos = useSelector((state) => state.filter.data);
+  // console.log("todos from filter", todos);
+
+  // const todos2 = useSelector((state) => state.todo.data);
+  // console.log("todos", todos2);
+
   return (
     <footer className="footer">
       <div className="actions">
         <h5>Actions</h5>
-        <button className="button">Mark All Completed</button>
-        <button className="button">Clear Completed</button>
+
+        <button
+          className="button"
+          onClick={() => {
+            dispatch(allTodosCompleted());
+          }}
+        >
+          Mark All Completed
+        </button>
+
+        <button
+          className="button"
+          onClick={() => dispatch(noneTodosCompleted())}
+        >
+          Clear Completed
+        </button>
       </div>
 
       <RemainingTodos count={1} />

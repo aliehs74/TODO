@@ -35,12 +35,30 @@ const todoSlice = createSlice({
         };
       },
     },
+    allTodosCompleted(state) {
+      const keys = Object.keys(state.data);
+      keys.forEach((key) => {
+        state.data[key].completed = true;
+      });
+    },
+    noneTodosCompleted(state) {
+      const keys = Object.keys(state.data);
+      keys.map((key) => (state.data[key].completed = false));
+    },
   },
 });
 
 //
 //export action and reducer
-export const { addTodo, removeTodo, toggleTodo, SelectTodoColor } =
-  todoSlice.actions;
+export const getInitialState = todoSlice.getInitialState();
+
+export const {
+  addTodo,
+  removeTodo,
+  toggleTodo,
+  SelectTodoColor,
+  allTodosCompleted,
+  noneTodosCompleted,
+} = todoSlice.actions;
 
 export default todoSlice.reducer;

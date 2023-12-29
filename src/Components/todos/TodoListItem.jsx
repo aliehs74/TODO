@@ -19,8 +19,8 @@ const TodoListItem = ({ todo }) => {
           <input
             className="toggle"
             type="checkbox"
-            defaultChecked={completed}
-            onClick={() => dispatch(toggleTodo(todo))}
+            checked={completed}
+            onChange={() => dispatch(toggleTodo(todo))}
           />
           <div className="todo-text">{text}</div>
         </div>
