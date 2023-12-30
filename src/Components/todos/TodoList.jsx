@@ -3,6 +3,7 @@ import TodoListItem from "./TodoListItem";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "./todosSlice";
 import { nanoid } from "@reduxjs/toolkit";
+import selectFilteredTodo from "./selectFilteredTodo";
 const TodoList = () => {
   const [value, setValue] = useState("");
 
@@ -14,16 +15,13 @@ const TodoList = () => {
     displayStatus: "",
   };
 
-  const todos = useSelector((state) => state.todo.data);
-  console.log("todos", todos);
+  // const filterdIds = useSelector((state) => selectFilteredTodo(state));
 
-  //
+  const filterdIds = [1, 2, 3];
   const dispatch = useDispatch();
 
-  const todosId = Object.keys(todos);
-
-  const renderedListItems = todosId.map((id) => {
-    return <TodoListItem key={id} todo={todos[id]} />;
+  const renderedListItems = filterdIds.map((id) => {
+    return <TodoListItem key={id} filterdId={id} />;
   });
 
   return (

@@ -1,10 +1,13 @@
 import { availableColors, capitalize } from "./colorProcess";
 import { ReactComponent as TimesSolid } from "./times-solid.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SelectTodoColor, removeTodo, toggleTodo } from "./todosSlice";
 
-const TodoListItem = ({ todo }) => {
+const TodoListItem = ({ filterdId }) => {
   const dispatch = useDispatch();
+
+  const todo = useSelector((state) => state.todo.data[filterdId]);
+
   const { text, completed, color, displayStatus, id } = todo;
   const colorOptions = availableColors.map((c) => (
     <option key={c} value={c}>
