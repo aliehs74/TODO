@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import initialState from "../../Redux/initialState";
 
-//make a todoSlice
+//make a todoSlice => (state) in this page is equal (state.todo) in global
 const todoSlice = createSlice({
   name: "todo",
   initialState,

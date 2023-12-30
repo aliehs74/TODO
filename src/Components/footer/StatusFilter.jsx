@@ -1,11 +1,14 @@
-import { StatusFilters } from "./filterSlice";
+import { useDispatch } from "react-redux";
+import { Statuses, statusFilter } from "./filterSlice";
 
 const StatusFilter = ({ value: status }) => {
-  const renderedFilters = Object.keys(StatusFilters).map((key) => {
-    const value = StatusFilters[key];
+  const dispatch = useDispatch();
+
+  const renderedFilters = Object.keys(Statuses).map((key) => {
+    const value = Statuses[key];
     const className = value === status ? "selected" : "";
     return (
-      <li key={value}>
+      <li key={value} onClick={() => dispatch(statusFilter(value))}>
         <button className={className}>{key}</button>
       </li>
     );

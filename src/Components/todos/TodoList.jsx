@@ -14,8 +14,6 @@ const TodoList = () => {
     displayStatus: "",
   };
 
-  // const todos = useSelector((state) => state.todo.data);
-  // console.log("todos", todos);
   const todos = useSelector((state) => state.todo.data);
   console.log("todos", todos);
 

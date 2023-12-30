@@ -1,68 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-import initialState from "../../Redux/initialState";
-
-//make a FilterSlice
+export const Statuses = {
+  All: "all",
+  Active: "active",
+  Completed: "completed",
+};
+//make a FilterSlice => (state) in this page is equal (state.filter) in global
 const filterSlice = createSlice({
   name: "filter",
-  initialState,
-  reducers: {
-    statusFilter: {
-      reducer(state, action) {
-        const { status } = action.payload;
-        const keys = Object.keys(state.data);
-        //  // displayStatus = "" ==> show item
-        if (status === "All") {
-          keys.forEach((key) => {
-            state.data[key].displayStatus = "";
-          });
-        }
-        if (status === "Active") {
-          keys.forEach((key) => {
-            state.data[key].completed === false
-              ? (state.data[key].displayStatus = "")
-              : (state.data[key].displayStatus = "none");
-          });
-        }
-
-        if (status === "Completed") {
-          keys.forEach((key) => {
-            state.data[key].completed === true
-              ? (state.data[key].displayStatus = "")
-              : (state.data[key].displayStatus = "none");
-          });
-        }
-      },
-
-      prepare(status) {
-        return { payload: { status } };
-      },
-    },
+  initialState: {
+    status: Statuses.All,
+    colors: [],
   },
-
-  colorFilter: {
-    reducer(state, action) {
-      const { color } = action.payload;
-      const keys = Object.keys(state.data);
-
-      keys.forEach((key) => {
-        state.data[key].color === color
-          ? (state.data[key].displayStatus = "")
-          : (state.data[key].displayStatus = "none");
-      });
+  reducers: {
+    statusFilter(state, action) {
+      state.status = action.payload;
     },
 
-    prepare(color) {
-      return { payload: { color } };
+    colorFilter(state, action) {
+      if (state.colors.includes(action.payload.color)) {
+        state.colors.splice(state.colors.indexOf(action.payload.color), 1);
+      } else {
+        state.colors.push(action.payload.color);
+      }
     },
   },
 });
 //
 //
-export const StatusFilters = {
-  All: "all",
-  Active: "active",
-  Completed: "completed",
-};
+
 //
 //export action and reducer
 export const { statusFilter, colorFilter } = filterSlice.actions;

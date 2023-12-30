@@ -8,12 +8,6 @@ import { noneTodosCompleted, allTodosCompleted } from "../todos/todosSlice";
 export default function Footer() {
   const dispatch = useDispatch();
 
-  // const todos = useSelector((state) => state.filter.data);
-  // console.log("todos from filter", todos);
-
-  // const todos2 = useSelector((state) => state.todo.data);
-  // console.log("todos", todos2);
-
   return (
     <footer className="footer">
       <div className="actions">
@@ -21,9 +15,7 @@ export default function Footer() {
 
         <button
           className="button"
-          onClick={() => {
-            dispatch(allTodosCompleted());
-          }}
+          onClick={() => dispatch(allTodosCompleted())}
         >
           Mark All Completed
         </button>
