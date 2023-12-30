@@ -28,9 +28,9 @@ export default function Footer() {
         </button>
       </div>
 
-      <RemainingTodos count={1} />
-      <StatusFilter value={"all"} />
-      <ColorFilters value={[]} />
+      <RemainingTodos />
+      <StatusFilter />
+      <ColorFilters />
     </footer>
   );
 }

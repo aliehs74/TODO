@@ -4,13 +4,15 @@ export const Statuses = {
   Active: "active",
   Completed: "completed",
 };
+const initialState = {
+  status: Statuses.All,
+  colors: [],
+};
 //make a FilterSlice => (state) in this page is equal (state.filter) in global
 const filterSlice = createSlice({
   name: "filter",
-  initialState: {
-    status: Statuses.All,
-    colors: [],
-  },
+  initialState,
+
   reducers: {
     statusFilter(state, action) {
       state.status = action.payload;

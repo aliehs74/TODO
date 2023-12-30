@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Statuses, statusFilter } from "./filterSlice";
 
-const StatusFilter = ({ value: status }) => {
+const StatusFilter = () => {
   const dispatch = useDispatch();
+  const status = useSelector((state) => state.filter.status);
 
   const renderedFilters = Object.keys(Statuses).map((key) => {
     const value = Statuses[key];

@@ -2,11 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { availableColors } from "../todos/colorProcess";
 import { colorFilter } from "./filterSlice";
 
-const ColorFilters = ({ value: colors }) => {
+const ColorFilters = () => {
   const dispatch = useDispatch();
-
-  const filter = useSelector((state) => state.filter);
-  console.log("filter", filter);
+  const colors = useSelector((state) => state.filter.colors);
 
   const renderedColors = availableColors.map((color) => {
     const checked = colors.includes(color);
