@@ -1,11 +1,33 @@
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
+import selectFilteredTodoId from "../todos/selectFilteredTodoId";
 
 const RemainingTodos = () => {
-  const todos = useSelector((state) => state.todo.data);
-  const count = Object.values(todos).filter((todo) => !todo.completed).length;
+  const filterdIds = useSelector(
+    (state) => selectFilteredTodoId(state),
+    shallowEqual
+  );
+  const todos = useSelector((state) => state.todo.data, shallowEqual);
+  //
+  const remainingTodos = [];
+  Object.values(todos).forEach((todo) => {
+    if (
+      !todo.completed &&
+      todo.displayStatus === "" &&
+      filterdIds.includes(todo.id)
+    ) {
+      remainingTodos.push(todo);
+    }
+  });
 
-  const suffix = count === 1 ? "" : "s";
-
+  const count = remainingTodos.length;
+  //
+  let suffix = "";
+  if (count === 0 || count === 1) {
+    suffix = "";
+  } else {
+    suffix = "s";
+  }
+  //
   return (
     <div className="todo-count">
       <h5>Remaining Todos</h5>

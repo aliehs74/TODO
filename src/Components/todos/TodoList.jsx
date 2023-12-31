@@ -1,9 +1,9 @@
 import { useState } from "react";
 import TodoListItem from "./TodoListItem";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { addTodo } from "./todosSlice";
 import { nanoid } from "@reduxjs/toolkit";
-import selectFilteredTodo from "./selectFilteredTodo";
+import selectFilteredTodoId from "./selectFilteredTodoId";
 const TodoList = () => {
   const [value, setValue] = useState("");
 
@@ -15,9 +15,11 @@ const TodoList = () => {
     displayStatus: "",
   };
 
-  // const filterdIds = useSelector((state) => selectFilteredTodo(state));
+  const filterdIds = useSelector(
+    (state) => selectFilteredTodoId(state),
+    shallowEqual
+  );
 
-  const filterdIds = [1, 2, 3];
   const dispatch = useDispatch();
 
   const renderedListItems = filterdIds.map((id) => {
@@ -45,5 +47,4 @@ const TodoList = () => {
     </>
   );
 };
-
 export default TodoList;
